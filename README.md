@@ -1,4 +1,4 @@
-# swapi-node
+# swapi-graphql
 
 GraphQL server for Star Wars API (SWAPI)
 
