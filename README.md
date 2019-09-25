@@ -58,6 +58,11 @@ query PeopleQuery($id: String!) {
 query FilmsQuery($id: String!) {
   films(id: $id) {
     title
+    releaseDate
+    director
+    episodeID
+    openingCrawl
+    producer
   }
 }
 ```
