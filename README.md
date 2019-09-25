@@ -27,6 +27,7 @@ http://localhost:4000/graphql
 ```
 query PeopleQuery($id: String!) {
   people(id: $id) {
+    name
     birthYear
     eyeColor
     gender
@@ -34,6 +35,19 @@ query PeopleQuery($id: String!) {
     height
     mass
     skinColor
+  }
+}
+```
+
+### Return character by ID with populated films
+
+```
+query PeopleQuery($id: String!) {
+  people(id: $id) {
+    name
+    films {
+      title
+    }
   }
 }
 ```
