@@ -25,10 +25,7 @@ module.exports = new GraphQLObjectType({
       }
     },
     gender: {
-      type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.gender;
-      }
+      type: GraphQLString
     },
     hairColor: {
       type: GraphQLString,
@@ -37,16 +34,10 @@ module.exports = new GraphQLObjectType({
       }
     },
     height: {
-      type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.height;
-      }
+      type: GraphQLString
     },
     mass: {
-      type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.mass;
-      }
+      type: GraphQLString
     },
     skinColor: {
       type: GraphQLString,
