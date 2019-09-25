@@ -55,16 +55,7 @@ module.exports = new GraphQLObjectType({
           variableValues: { id }
         }
       ) {
-        return SWAPI.getPeople(id).then(response => {
-          const { films } = response;
-          const filmsToFetch = films.map(film => {
-            const segments = film.split("/");
-            const id = segments[segments.length - 2];
-            return SWAPI.getFilm(id);
-          });
-          return axios.all([...filmsToFetch]);
-        });
-        return parentValue.films;
+        return SWAPI.getFilmsForPerson(id);
       }
     }
   }
