@@ -1,4 +1,7 @@
-const { GraphQLObjectType, GraphQLString } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
+const FilmType = require("./Film");
+const SWAPI = require("../services/swapi");
+const axios = require("axios");
 
 module.exports = new GraphQLObjectType({
   name: "CharacterType",
@@ -49,6 +52,28 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString,
       resolve(parentValue, args) {
         return parentValue.skin_color;
+      }
+    },
+    films: {
+      type: new GraphQLList(FilmType),
+      resolve(
+        parentValue,
+        args,
+        context,
+        {
+          variableValues: { id }
+        }
+      ) {
+        return SWAPI.getPeople(id).then(response => {
+          const { films } = response;
+          const filmsToFetch = films.map(film => {
+            const segments = film.split("/");
+            const id = segments[segments.length - 2];
+            return SWAPI.getFilm(id);
+          });
+          return axios.all([...filmsToFetch]);
+        });
+        return parentValue.films;
       }
     }
   }
