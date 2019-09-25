@@ -1,0 +1,7 @@
+node_modules/
+**/.DS_Store
+**/.npmrc
+yarn-error.log
+coverage
+public
+*.env
