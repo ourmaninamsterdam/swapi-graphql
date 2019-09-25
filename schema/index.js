@@ -1,6 +1,6 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require("graphql");
 const PersonType = require("../types/Person");
-const axios = require("axios");
+const SWAPI = require("../services/swapi");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -11,9 +11,7 @@ const RootQuery = new GraphQLObjectType({
       },
       type: PersonType,
       resolve(parentValue, { id }) {
-        return axios
-          .get(`https://swapi.co/api/people/${id}`)
-          .then(response => response.data);
+        return SWAPI.getPeople(id);
       }
     }
   }
