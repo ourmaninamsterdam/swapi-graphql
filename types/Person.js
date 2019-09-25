@@ -50,12 +50,6 @@ module.exports = new GraphQLObjectType({
       resolve(parentValue, args) {
         return parentValue.skin_color;
       }
-    },
-    skinColor: {
-      type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.skin_color;
-      }
     }
   }
 });
