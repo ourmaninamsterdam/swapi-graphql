@@ -1,16 +1,16 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require("graphql");
-const PersonType = require("../types/Person");
+const CharacterType = require("../types/Character");
 const FilmType = require("../types/Film");
 const SWAPI = require("../services/swapi");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
-    people: {
+    character: {
       args: {
         id: { type: GraphQLString }
       },
-      type: PersonType,
+      type: CharacterType,
       resolve(parentValue, { id }) {
         return SWAPI.getPeople(id);
       }
