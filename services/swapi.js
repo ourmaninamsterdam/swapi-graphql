@@ -5,6 +5,9 @@ const axiosInstance = axios.create({
 });
 
 module.exports = {
+  getFilm(id) {
+    return axiosInstance.get(`/films/${id}`).then(response => response.data);
+  },
   getPeople(id) {
     return axiosInstance.get(`/people/${id}`).then(response => response.data);
   }
