@@ -3,6 +3,7 @@ const CharacterType = require("../types/Character");
 const FilmType = require("../types/Film");
 const StarShipType = require("../types/StarShip");
 const VehicleType = require("../types/Vehicle");
+const PlanetType = require("../types/Planet");
 const SWAPI = require("../services/swapi");
 
 const RootQuery = new GraphQLObjectType({
@@ -42,6 +43,15 @@ const RootQuery = new GraphQLObjectType({
       type: VehicleType,
       resolve(source, { id }) {
         return SWAPI.getVehicle(id);
+      }
+    },
+    planets: {
+      args: {
+        id: { type: GraphQLString }
+      },
+      type: PlanetType,
+      resolve(source, { id }) {
+        return SWAPI.getPlanet(id);
       }
     }
   }

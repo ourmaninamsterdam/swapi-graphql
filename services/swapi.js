@@ -50,6 +50,13 @@ const getVehicle = async id => {
   return fetchSWAPIData(`/vehicles/${id}`);
 };
 
+const getPlanet = async id => {
+  if (!id) {
+    throw new Error("SWAPI.getPlanet: Invalid 'id' supplied");
+  }
+  return fetchSWAPIData(`/planets/${id}`);
+};
+
 const fetchMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
   const result = await entryResolver(id);
   const requestPromises = buildRequestPromises(
@@ -83,14 +90,20 @@ const getPilotsForVehicle = async id => {
   return fetchMultiple(id, "pilots", getVehicle, getPeople);
 };
 
+const getResidentsForPlanet = async id => {
+  return fetchMultiple(id, "residents", getPlanet, getPeople);
+};
+
 module.exports = {
   getFilm,
   getPeople,
   getStarship,
   getVehicle,
+  getPlanet,
   getFilmsForPerson,
   getFilmsForStarship,
   getFilmsForVehicle,
   getPilotsForStarship,
-  getPilotsForVehicle
+  getPilotsForVehicle,
+  getResidentsForPlanet
 };
