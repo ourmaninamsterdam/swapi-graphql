@@ -36,9 +36,33 @@ const getPeople = async id => {
   return fetchSWAPIData(`/people/${id}`);
 };
 
+const getStarship = async id => {
+  if (!id) {
+    throw new Error("SWAPI.getStarship: Invalid 'id' supplied");
+  }
+  return fetchSWAPIData(`/starships/${id}`);
+};
+
+const getMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
+  const result = await entryResolver(id);
+  const requestPromises = buildRequestPromises(
+    result[rootAttr],
+    targetResolver
+  );
+  try {
+    return await axios.all([...requestPromises]);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const getFilmsForPerson = async id => {
-  const { films } = await getPeople(id);
-  const requestPromises = buildRequestPromises(films, getFilm);
+  return getMultiple(id, "films", getPeople, getFilm);
+};
+
+const getFilmsForStarship = async id => {
+  const { starships } = await getStarship(id);
+  const requestPromises = buildRequestPromises(starships, getFilm);
 
   try {
     return await axios.all([...requestPromises]);
@@ -50,5 +74,7 @@ const getFilmsForPerson = async id => {
 module.exports = {
   getFilm,
   getPeople,
-  getFilmsForPerson
+  getStarship,
+  getFilmsForPerson,
+  getFilmsForStarship
 };
