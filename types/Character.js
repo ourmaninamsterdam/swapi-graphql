@@ -14,14 +14,14 @@ module.exports = new GraphQLObjectType({
     },
     birthYear: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.birth_year;
+      resolve({ birth_year }, args) {
+        return birth_year;
       }
     },
     eyeColor: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.eye_color;
+      resolve({ eye_color }, args) {
+        return eye_color;
       }
     },
     gender: {
@@ -29,8 +29,8 @@ module.exports = new GraphQLObjectType({
     },
     hairColor: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.hair_color;
+      resolve({ hair_color }, args) {
+        return hair_color;
       }
     },
     height: {
@@ -41,14 +41,14 @@ module.exports = new GraphQLObjectType({
     },
     skinColor: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.skin_color;
+      resolve({ skin_color }, args) {
+        return skin_color;
       }
     },
     films: {
       type: new GraphQLList(FilmType),
       resolve(
-        parentValue,
+        source,
         args,
         context,
         {

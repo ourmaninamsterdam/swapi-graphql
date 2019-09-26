@@ -11,14 +11,14 @@ module.exports = new GraphQLObjectType({
     },
     episodeID: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.episode_id;
+      resolve({ episode_id }, args) {
+        return episode_id;
       }
     },
     openingCrawl: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.opening_crawl;
+      resolve({ opening_crawl }, args) {
+        return opening_crawl;
       }
     },
     producer: {
@@ -26,8 +26,8 @@ module.exports = new GraphQLObjectType({
     },
     releaseDate: {
       type: GraphQLString,
-      resolve(parentValue, args) {
-        return parentValue.release_date;
+      resolve({ release_date }, args) {
+        return release_date;
       }
     }
   }

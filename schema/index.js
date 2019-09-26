@@ -11,7 +11,7 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       type: CharacterType,
-      resolve(parentValue, { id }) {
+      resolve(source, { id }) {
         return SWAPI.getPeople(id);
       }
     },
@@ -20,7 +20,7 @@ const RootQuery = new GraphQLObjectType({
         id: { type: GraphQLString }
       },
       type: FilmType,
-      resolve(parentValue, { id }) {
+      resolve(source, { id }) {
         return SWAPI.getFilm(id);
       }
     }
