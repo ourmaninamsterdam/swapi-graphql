@@ -50,9 +50,8 @@ const getVehicle = async id => {
   return fetchSWAPIData(`/vehicles/${id}`);
 };
 
-const getMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
+const fetchMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
   const result = await entryResolver(id);
-  console.log(result);
   const requestPromises = buildRequestPromises(
     result[rootAttr],
     targetResolver
@@ -65,23 +64,23 @@ const getMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
 };
 
 const getFilmsForPerson = async id => {
-  return getMultiple(id, "films", getPeople, getFilm);
+  return fetchMultiple(id, "films", getPeople, getFilm);
 };
 
 const getFilmsForStarship = async id => {
-  return getMultiple(id, "films", getStarship, getFilm);
+  return fetchMultiple(id, "films", getStarship, getFilm);
 };
 
 const getFilmsForVehicle = async id => {
-  return getMultiple(id, "films", getVehicle, getFilm);
+  return fetchMultiple(id, "films", getVehicle, getFilm);
 };
 
 const getPilotsForStarship = async id => {
-  return getMultiple(id, "pilots", getStarship, getPeople);
+  return fetchMultiple(id, "pilots", getStarship, getPeople);
 };
 
 const getPilotsForVehicle = async id => {
-  return getMultiple(id, "pilots", getVehicle, getPeople);
+  return fetchMultiple(id, "pilots", getVehicle, getPeople);
 };
 
 module.exports = {
