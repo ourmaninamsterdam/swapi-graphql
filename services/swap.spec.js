@@ -206,4 +206,56 @@ describe("SWAPI service", () => {
       });
     });
   });
+
+  describe("getPilotsForStarship", () => {
+    describe("Given invalid input", () => {
+      it("should return an error", async () => {
+        const expected = "SWAPI.getStarship: Invalid 'id' supplied";
+        await expect(SWAPI.getPilotsForStarship()).rejects.toThrow(expected);
+      });
+    });
+
+    describe("Given valid input", () => {
+      describe("BUT there was a issue with the initial request", () => {
+        it("should return an error", async () => {
+          const expected = "Request failed 404 ";
+          axios.get.mockImplementationOnce(() => Promise.reject(expected));
+
+          await expect(SWAPI.getPilotsForStarship("2")).rejects.toThrow(
+            expected
+          );
+        });
+      });
+
+      describe("BUT one of the get promises failed", () => {
+        it("should return an error", async () => {
+          const expected = "Request failed 404 ";
+          axios.get.mockImplementationOnce(() =>
+            Promise.resolve(fixtureData.starship)
+          );
+          axios.all.mockImplementationOnce(() => Promise.reject(expected));
+
+          await expect(SWAPI.getPilotsForStarship("2")).rejects.toThrow(
+            expected
+          );
+        });
+      });
+
+      it("should fetch the data for each pilot from the people API", async () => {
+        const expected = [
+          fixtureData.people.data,
+          fixtureData.people.data,
+          fixtureData.people.data
+        ];
+        axios.get.mockImplementationOnce(() =>
+          Promise.resolve(fixtureData.starship)
+        );
+        axios.get.mockImplementation(() => Promise.resolve(fixtureData.film));
+        axios.all.mockImplementationOnce(() => Promise.resolve(expected));
+        await expect(SWAPI.getPilotsForStarship("2")).resolves.toEqual(
+          expected
+        );
+      });
+    });
+  });
 });

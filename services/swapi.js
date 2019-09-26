@@ -45,6 +45,7 @@ const getStarship = async id => {
 
 const getMultiple = async (id, rootAttr, entryResolver, targetResolver) => {
   const result = await entryResolver(id);
+  console.log(result);
   const requestPromises = buildRequestPromises(
     result[rootAttr],
     targetResolver
@@ -64,10 +65,15 @@ const getFilmsForStarship = async id => {
   return getMultiple(id, "films", getStarship, getFilm);
 };
 
+const getPilotsForStarship = async id => {
+  return getMultiple(id, "pilots", getStarship, getPeople);
+};
+
 module.exports = {
   getFilm,
   getPeople,
   getStarship,
   getFilmsForPerson,
-  getFilmsForStarship
+  getFilmsForStarship,
+  getPilotsForStarship
 };

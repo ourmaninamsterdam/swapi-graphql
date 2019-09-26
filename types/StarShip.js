@@ -1,5 +1,6 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
 const FilmType = require("./Film");
+const CharacterType = require("./Character");
 const SWAPI = require("../services/swapi");
 const axios = require("axios");
 
@@ -64,9 +65,19 @@ module.exports = new GraphQLObjectType({
         return SWAPI.getFilmsForStarship(id);
       }
     },
-    // pilots: {
-    //   type: GraphQLList
-    // },
+    pilots: {
+      type: new GraphQLList(CharacterType),
+      resolve(
+        source,
+        args,
+        context,
+        {
+          variableValues: { id }
+        }
+      ) {
+        return SWAPI.getPilotsForStarship(id);
+      }
+    },
     starshipClass: {
       type: GraphQLString
     }
