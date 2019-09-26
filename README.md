@@ -1,4 +1,4 @@
-# swapi-graphql
+# swapi-graphql [![Build Status](https://travis-ci.org/ourmaninamsterdam/swapi-graphql.svg?branch=master)](https://travis-ci.org/ourmaninamsterdam/swapi-graphql)
 
 GraphQL server for Star Wars API (SWAPI)
 
