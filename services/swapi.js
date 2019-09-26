@@ -72,8 +72,16 @@ const getFilmsForStarship = async id => {
   return getMultiple(id, "films", getStarship, getFilm);
 };
 
+const getFilmsForVehicle = async id => {
+  return getMultiple(id, "films", getVehicle, getFilm);
+};
+
 const getPilotsForStarship = async id => {
   return getMultiple(id, "pilots", getStarship, getPeople);
+};
+
+const getPilotsForVehicle = async id => {
+  return getMultiple(id, "pilots", getVehicle, getPeople);
 };
 
 module.exports = {
@@ -83,5 +91,7 @@ module.exports = {
   getVehicle,
   getFilmsForPerson,
   getFilmsForStarship,
-  getPilotsForStarship
+  getFilmsForVehicle,
+  getPilotsForStarship,
+  getPilotsForVehicle
 };
