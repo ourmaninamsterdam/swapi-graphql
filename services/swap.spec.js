@@ -94,7 +94,7 @@ describe("SWAPI service", () => {
         });
       });
 
-      it("should call the people API with the correct URL", () => {
+      it("should call the starships API with the correct URL", () => {
         const expected = "https://swapi.co/api/starships/2";
         SWAPI.getStarship("2");
         expect(axios.get.mock.calls.length).toEqual(1);
@@ -107,6 +107,40 @@ describe("SWAPI service", () => {
           Promise.resolve(fixtureData.people)
         );
         await expect(SWAPI.getStarship("1")).resolves.toEqual(expected);
+      });
+    });
+  });
+
+  describe("getVehicle", () => {
+    describe("Given invalid input", () => {
+      it("should return an error", async () => {
+        const expected = "SWAPI.getVehicle: Invalid 'id' supplied";
+        await expect(SWAPI.getVehicle()).rejects.toThrow(expected);
+      });
+    });
+
+    describe("Given valid input", () => {
+      describe("BUT there was a issue with the request", () => {
+        it("should return an error", async () => {
+          const expected = "Request failed 404 ";
+          axios.get.mockImplementationOnce(() => Promise.reject(expected));
+          await expect(SWAPI.getVehicle("1")).rejects.toThrow(expected);
+        });
+      });
+
+      it("should call the vehicles API with the correct URL", () => {
+        const expected = "https://swapi.co/api/vehicles/2";
+        SWAPI.getVehicle("2");
+        expect(axios.get.mock.calls.length).toEqual(1);
+        expect(axios.get).toBeCalledWith(expected);
+      });
+
+      it("should return the vehicle data", async () => {
+        const expected = fixtureData.vehicle.data;
+        axios.get.mockImplementationOnce(() =>
+          Promise.resolve(fixtureData.vehicle)
+        );
+        await expect(SWAPI.getVehicle("1")).resolves.toEqual(expected);
       });
     });
   });
