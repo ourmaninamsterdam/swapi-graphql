@@ -25,8 +25,8 @@ http://localhost:4000/graphql
 ### Return character by ID
 
 ```
-query PeopleQuery($id: String!) {
-  people(id: $id) {
+query CharacterQuery($id: String!) {
+  character(id: $id) {
     name
     birthYear
     eyeColor
@@ -42,8 +42,8 @@ query PeopleQuery($id: String!) {
 ### Return character by ID with populated films
 
 ```
-query PeopleQuery($id: String!) {
-  people(id: $id) {
+query CharacterQuery($id: String!) {
+  character(id: $id) {
     name
     films {
       title
