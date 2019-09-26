@@ -61,14 +61,7 @@ const getFilmsForPerson = async id => {
 };
 
 const getFilmsForStarship = async id => {
-  const { starships } = await getStarship(id);
-  const requestPromises = buildRequestPromises(starships, getFilm);
-
-  try {
-    return await axios.all([...requestPromises]);
-  } catch (error) {
-    throw new Error(error);
-  }
+  return getMultiple(id, "films", getStarship, getFilm);
 };
 
 module.exports = {
