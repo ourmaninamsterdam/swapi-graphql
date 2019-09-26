@@ -1,7 +1,7 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
 const CharacterType = require("./Character");
 const PlanetType = require("./Planet");
-const SWAPI = require("../services/swapi");
+const SWAPI = require("../../services/swapi");
 const axios = require("axios");
 
 module.exports = new GraphQLObjectType({

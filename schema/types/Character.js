@@ -1,6 +1,6 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
 const FilmType = require("./Film");
-const SWAPI = require("../services/swapi");
+const SWAPI = require("../../services/swapi");
 const axios = require("axios");
 
 module.exports = new GraphQLObjectType({

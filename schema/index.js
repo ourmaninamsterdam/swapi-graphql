@@ -1,9 +1,9 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString } = require("graphql");
-const CharacterType = require("../types/Character");
-const FilmType = require("../types/Film");
-const StarShipType = require("../types/StarShip");
-const VehicleType = require("../types/Vehicle");
-const PlanetType = require("../types/Planet");
+const CharacterType = require("./types/Character");
+const FilmType = require("./types/Film");
+const StarShipType = require("./types/StarShip");
+const VehicleType = require("./types/Vehicle");
+const PlanetType = require("./types/Planet");
 const SWAPI = require("../services/swapi");
 
 const RootQuery = new GraphQLObjectType({
