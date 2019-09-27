@@ -17,10 +17,7 @@ module.exports = new GraphQLObjectType({
       }
     },
     consumables: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.consumables;
-      }
+      type: GraphQLString
     },
     costInCredits: {
       type: GraphQLString,
@@ -28,35 +25,14 @@ module.exports = new GraphQLObjectType({
         return source.cost_in_credits;
       }
     },
-    created: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.created;
-      }
-    },
     crew: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.crew;
-      }
-    },
-    edited: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.edited;
-      }
+      type: GraphQLString
     },
     length: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.length;
-      }
+      type: GraphQLString
     },
     manufacturer: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.manufacturer;
-      }
+      type: GraphQLString
     },
     maxAtmospheringSpeed: {
       type: GraphQLString,
@@ -65,16 +41,10 @@ module.exports = new GraphQLObjectType({
       }
     },
     model: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.model;
-      }
+      type: GraphQLString
     },
     passengers: {
-      type: GraphQLString,
-      resolve(source) {
-        return source.passengers;
-      }
+      type: GraphQLString
     },
     pilots: {
       type: new GraphQLList(CharacterType),
