@@ -20,9 +20,20 @@ npm install
 http://localhost:4000/graphql
 ```
 
+## Types
+
+Support for
+
+* Characters
+* Films
+* Vehicles
+* Planets
+* Starships
+* _TODO Species_
+
 ## Query examples
 
-### Return character by ID
+### Return character
 
 ```
 query CharacterQuery($id: String!) {
@@ -39,7 +50,7 @@ query CharacterQuery($id: String!) {
 }
 ```
 
-### Return character by ID with populated films
+### Return character with populated films
 
 ```
 query CharacterQuery($id: String!) {
@@ -52,7 +63,7 @@ query CharacterQuery($id: String!) {
 }
 ```
 
-### Return film by ID
+### Return film
 
 ```
 query FilmsQuery($id: String!) {
