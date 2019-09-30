@@ -77,3 +77,8 @@ query FilmsQuery($id: String!) {
   }
 }
 ```
+
+## TODO
+
+* Cache requests
+* Improve SWAPI service
