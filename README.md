@@ -82,3 +82,4 @@ query FilmsQuery($id: String!) {
 
 * Cache requests
 * Improve SWAPI service
+* Add more tests
