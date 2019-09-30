@@ -1,4 +1,10 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLList,
+  GraphQLInt,
+  GraphQLFloat
+} = require("graphql");
 const FilmType = require("./Film");
 const CharacterType = require("./Character");
 const SWAPI = require("../../services/swapi");
@@ -11,7 +17,7 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString
     },
     cargoCapacity: {
-      type: GraphQLString,
+      type: GraphQLInt,
       resolve(source) {
         return source.cargo_capacity;
       }
@@ -20,22 +26,22 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString
     },
     costInCredits: {
-      type: GraphQLString,
+      type: GraphQLFloat,
       resolve(source) {
         return source.cost_in_credits;
       }
     },
     crew: {
-      type: GraphQLString
+      type: GraphQLInt
     },
     length: {
-      type: GraphQLString
+      type: GraphQLFloat
     },
     manufacturer: {
       type: GraphQLString
     },
     maxAtmospheringSpeed: {
-      type: GraphQLString,
+      type: GraphQLFloat,
       resolve(source) {
         return source.max_atmosphering_speed;
       }
@@ -44,7 +50,7 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString
     },
     passengers: {
-      type: GraphQLString
+      type: GraphQLInt
     },
     pilots: {
       type: new GraphQLList(CharacterType),

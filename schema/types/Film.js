@@ -1,4 +1,5 @@
-const { GraphQLObjectType, GraphQLString } = require("graphql");
+const { GraphQLObjectType, GraphQLString, GraphQLFloat } = require("graphql");
+const convertToNumber = require("./helpers/convertToNumber");
 
 module.exports = new GraphQLObjectType({
   name: "FilmType",
@@ -10,7 +11,7 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString
     },
     episodeID: {
-      type: GraphQLString,
+      type: GraphQLFloat,
       resolve({ episode_id }, args) {
         return episode_id;
       }

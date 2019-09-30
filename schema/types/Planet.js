@@ -1,4 +1,10 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require("graphql");
+const {
+  GraphQLObjectType,
+  GraphQLString,
+  GraphQLList,
+  GraphQLFloat,
+  GraphQLInt
+} = require("graphql");
 const CharacterType = require("./Character");
 const PlanetType = require("./Planet");
 const SWAPI = require("../../services/swapi");
@@ -14,22 +20,22 @@ module.exports = new GraphQLObjectType({
       type: GraphQLString
     },
     diameter: {
-      type: GraphQLString
+      type: GraphQLFloat
     },
     gravity: {
-      type: GraphQLString
+      type: GraphQLFloat
     },
     name: {
       type: GraphQLString
     },
     orbitalPeriod: {
-      type: GraphQLString,
+      type: GraphQLInt,
       resolve({ orbital_period }) {
         return orbital_period;
       }
     },
     population: {
-      type: GraphQLString
+      type: GraphQLInt
     },
     residents: {
       type: new GraphQLList(CharacterType),
@@ -45,13 +51,13 @@ module.exports = new GraphQLObjectType({
       }
     },
     rotationPeriod: {
-      type: GraphQLString,
+      type: GraphQLFloat,
       resolve({ rotation_period }) {
         return rotation_period;
       }
     },
     surfaceWater: {
-      type: GraphQLString,
+      type: GraphQLFloat,
       resolve({ surface_water }) {
         return surface_water;
       }
