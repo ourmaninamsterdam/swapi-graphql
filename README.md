@@ -80,6 +80,7 @@ query FilmsQuery($id: String!) {
 
 ## TODO
 
-* Cache requests
-* Improve SWAPI service
+* Cache/batch requests
+* Rewrite SWAPI service
+* Add Species Type
 * Add more tests
